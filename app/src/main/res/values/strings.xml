@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">app1</string>
-    <string name="resultat"> Le resultat est %1$f : %2$s</string>
+    <string name="resultat">: %2$s : Le résultat est %1$f  !</string>
 </resources>

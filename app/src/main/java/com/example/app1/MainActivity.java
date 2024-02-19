@@ -1,5 +1,7 @@
 package com.example.app1;
 
+import static android.provider.Settings.System.getString;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -36,36 +38,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void fctConvert() {
-        if(r1.isChecked()){
-        String s = editTextAmount.getText().toString();
-        double res = Float.parseFloat(s)/3.4;
-        String resultat = getString(R.string.resultat, res, "euros");
-        resultTextView.setText(resultat);}
-        else if (r2.isChecked()) {
-            res = Float.parseFloat(editTextAmount.getText().toString()) *3.4;
+        double res;
+        if (r1.isChecked()) {
+            String s = editTextAmount.getText().toString();
+            res = Float.parseFloat(s) / 3.4;
+            resultTextView.setText(res + " euros ! ");
+            String resAffich = getString(R.string.resultat, res, " Euros !");
+            resultTextView.setText(resAffich);
+        } else if (r2.isChecked()) {
+            res = Float.parseFloat(editTextAmount.getText().toString()) * 3.4;
+            resultTextView.setText(getString(R.string.resultat, res, " dinars"));
 
 
-
-
-        }else {
-            Toast t =  Toast.makeText(MainActivity.this,
-                    "veillez selectionner un boutton radio",
-                    Toast.LENGTH_LONG);
-            t.show();
+        } else {
+            Toast.makeText(this, "veilez choisir une conversion", Toast.LENGTH_LONG).show();
         }
 
 
-        double amount;
-        try {
-            amount = Double.parseDouble(editTextAmount.getText().toString());
-        } catch (NumberFormatException e) {
-            resultTextView.setText("Please enter a valid amount.");
-            return;
-        }
 
-        double conversionRate = r1.isChecked() ? 0.3 : 3.4;
 
-        double result = amount * conversionRate;
-        resultTextView.setText("Result: " + result +"!");
+
     }
 }
